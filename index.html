@@ -1,10 +1,159 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Stormy2Tuff</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FREE ROBUX</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: black;
+      overflow: hidden;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+    }
+
+    /* Animated background */
+    body::before {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: repeating-linear-gradient(
+        90deg,
+        rgba(255,255,255,0.03) 0px,
+        rgba(255,255,255,0.03) 2px,
+        transparent 2px,
+        transparent 40px
+      );
+      z-index: -1;
+    }
+
+    .container {
+      text-align: center;
+      transition: opacity 1.5s ease;
+    }
+
+    .robux-button {
+      background: white;
+      color: black;
+      border: none;
+      padding: 35px 70px;
+      font-size: 42px;
+      font-weight: bold;
+      border-radius: 20px;
+      cursor: pointer;
+      box-shadow: 0 0 30px white;
+      transition: 0.3s ease;
+      animation: pulse 2s infinite;
+    }
+
+    .robux-button:hover {
+      transform: scale(1.08);
+      background: black;
+      color: white;
+      border: 2px solid white;
+    }
+
+    @keyframes pulse {
+      0% {
+        box-shadow: 0 0 15px white;
+      }
+      50% {
+        box-shadow: 0 0 40px white;
+      }
+      100% {
+        box-shadow: 0 0 15px white;
+      }
+    }
+
+    .definition-screen {
+      opacity: 0;
+      position: absolute;
+      text-align: center;
+      width: 80%;
+      transition: opacity 2s ease;
+      pointer-events: none;
+    }
+
+    .definition-screen.show {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .definition-screen.show {
+      opacity: 1;
+    }
+
+    .definition-title {
+      font-size: 70px;
+      margin-bottom: 20px;
+      text-shadow: 0 0 20px white;
+      letter-spacing: 4px;
+    }
+
+    .definition-text {
+      font-size: 30px;
+      color: #d8d8d8;
+      max-width: 900px;
+      margin: auto;
+      line-height: 1.5;
+    }
+  </style>
 </head>
-<body style="background:black;color:white;text-align:center;font-family:Arial;">
-  <h1>Stormy2Tuff</h1>
-  <p>My website is live.</p>
+<body>
+
+  <!-- START SCREEN -->
+  <div class="container" id="startScreen">
+    <button class="robux-button" onclick="showDefinition()">
+      CLICK HERE FOR FREE ROBUX
+    </button>
+  </div>
+
+  <!-- SECOND SCREEN -->
+  <div class="definition-screen" id="definitionScreen">
+
+    <div class="definition-text" style="font-size: 55px; margin-bottom: 40px; text-shadow: 0 0 20px white;">
+      THANKS FOR YOUR IP LOSER XDDD
+    </div>
+
+    <button class="robux-button" style="font-size: 28px; padding: 20px 50px;" onclick="showMoreInfo()">
+      CLICK HERE FOR MORE INFO
+    </button>
+  </div>
+
+  <!-- FINAL SCREEN -->
+  <div class="definition-screen" id="finalScreen">
+
+    <!-- PUT YOUR OWN DEFINITION BELOW -->
+    <div class="definition-text">
+     <br><h1><strong>I OWN ALL YOU BITCHES</strong><h1><br>
+    <h3>Means that you are superior to a group of others, in control, the boss, etc.<h3>
+    </div>
+
+  </div>
+
+  <script>
+    function showDefinition() {
+      document.getElementById("startScreen").style.display = "none";
+      document.getElementById("definitionScreen").classList.add("show");
+    }
+
+    function showMoreInfo() {
+      document.getElementById("definitionScreen").style.display = "none";
+      document.getElementById("finalScreen").classList.add("show");
+    }
+  </script>
+
 </body>
 </html>
