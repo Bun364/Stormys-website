@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>FREE ROBUX</title>
 
   <style>
@@ -17,9 +17,6 @@
       background: black;
       overflow: hidden;
       height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
       color: white;
     }
 
@@ -36,7 +33,7 @@
       z-index: -3;
     }
 
-    /* COOL GRID BACKGROUND */
+    /* GRID EFFECT */
 
     body::before {
       content: "";
@@ -61,7 +58,7 @@
       z-index: -2;
     }
 
-    /* DARK OVERLAY */
+    /* DARK FADE OVERLAY */
 
     body::after {
       content: "";
@@ -70,19 +67,32 @@
       height: 100%;
       background: radial-gradient(
         circle,
-        rgba(255,255,255,0.03) 0%,
-        rgba(0,0,0,0.85) 75%
+        rgba(255,255,255,0.04) 0%,
+        rgba(0,0,0,0.88) 75%
       );
       z-index: -1;
     }
 
-    .container {
+    /* SCREEN SETUP */
+
+    .screen {
+      position: absolute;
+      width: 100%;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
       text-align: center;
       transition: opacity 1.5s ease;
-      animation: fadeIn 2s ease;
+      animation: fadeIn 1.5s ease;
     }
 
-    /* GLOW BUTTON */
+    .hidden {
+      display: none;
+    }
+
+    /* MAIN BUTTON */
 
     .robux-button {
       background: white;
@@ -93,15 +103,17 @@
       font-weight: bold;
       border-radius: 20px;
       cursor: pointer;
+      letter-spacing: 2px;
+      position: relative;
+      overflow: hidden;
+
       box-shadow:
         0 0 15px white,
         0 0 35px rgba(255,255,255,0.7),
         0 0 70px rgba(255,255,255,0.3);
-      transition: 0.35s ease;
+
       animation: pulse 2s infinite;
-      letter-spacing: 2px;
-      position: relative;
-      overflow: hidden;
+      transition: 0.35s ease;
     }
 
     .robux-button:hover {
@@ -109,9 +121,10 @@
       background: black;
       color: white;
       border: 2px solid white;
+
       box-shadow:
-        0 0 20px white,
-        0 0 60px white;
+        0 0 25px white,
+        0 0 70px white;
     }
 
     /* SHINE EFFECT */
@@ -132,9 +145,61 @@
       left: 140%;
     }
 
-    /* PULSE */
+    /* TEXT */
+
+    .main-text {
+      font-size: 70px;
+      margin-bottom: 35px;
+
+      text-shadow:
+        0 0 10px white,
+        0 0 25px white;
+    }
+
+    .sub-text {
+      font-size: 30px;
+      max-width: 900px;
+      line-height: 1.5;
+
+      text-shadow:
+        0 0 10px black,
+        0 0 20px black;
+    }
+
+    /* BOTTOM LEFT TEXT */
+
+    .floating-text {
+      position: absolute;
+      bottom: 35px;
+      left: 35px;
+      font-size: 2rem;
+      letter-spacing: 5px;
+      z-index: 5;
+
+      text-shadow:
+        0 0 10px white,
+        0 0 20px white;
+
+      animation: glow 3s infinite alternate;
+    }
+
+    /* PARTICLES */
+
+    .particle {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: white;
+      border-radius: 50%;
+      opacity: 0.4;
+      animation: float linear infinite;
+      z-index: 0;
+    }
+
+    /* ANIMATIONS */
 
     @keyframes pulse {
+
       0% {
         box-shadow:
           0 0 10px white,
@@ -154,53 +219,18 @@
       }
     }
 
-    /* SCREENS */
+    @keyframes glow {
+      from {
+        text-shadow:
+          0 0 5px white,
+          0 0 15px white;
+      }
 
-    .definition-screen {
-      opacity: 0;
-      position: absolute;
-      text-align: center;
-      width: 80%;
-      transition: opacity 2s ease;
-      pointer-events: none;
-    }
-
-    .definition-screen.show {
-      opacity: 1;
-      pointer-events: auto;
-      animation: fadeIn 2s ease;
-    }
-
-    .definition-title {
-      font-size: 70px;
-      margin-bottom: 20px;
-      text-shadow:
-        0 0 10px white,
-        0 0 30px white;
-      letter-spacing: 4px;
-    }
-
-    .definition-text {
-      font-size: 30px;
-      max-width: 900px;
-      margin: auto;
-      line-height: 1.5;
-      text-shadow:
-        0 0 10px black,
-        0 0 20px black;
-    }
-
-    /* FLOATING PARTICLES */
-
-    .particle {
-      position: absolute;
-      width: 2px;
-      height: 2px;
-      background: white;
-      border-radius: 50%;
-      opacity: 0.4;
-      animation: float linear infinite;
-      z-index: 0;
+      to {
+        text-shadow:
+          0 0 20px white,
+          0 0 40px white;
+      }
     }
 
     @keyframes float {
@@ -212,8 +242,6 @@
         transform: translateY(-100vh);
       }
     }
-
-    /* FADE */
 
     @keyframes fadeIn {
       from {
@@ -237,28 +265,25 @@
     <source src="background.mp4" type="video/mp4">
   </video>
 
-  <!-- START SCREEN -->
-  <div class="container" id="startScreen">
+  <!-- SCREEN 1 -->
+  <div class="screen" id="screen1">
 
-    <button class="robux-button" onclick="showDefinition()">
+    <button class="robux-button" onclick="showScreen2()">
       CLICK HERE FOR FREE ROBUX
     </button>
 
   </div>
 
-  <!-- SECOND SCREEN -->
-  <div class="definition-screen" id="definitionScreen">
+  <!-- SCREEN 2 -->
+  <div class="screen hidden" id="screen2">
 
-    <div class="definition-text"
-      style="font-size: 55px; margin-bottom: 40px;">
-
-      THANKS FOR YOUR IP LOSER XDDD
-
+    <div class="main-text">
+      GOT YOUR IP LOSER XDDD
     </div>
 
     <button class="robux-button"
-      style="font-size: 28px; padding: 20px 50px;"
-      onclick="showMoreInfo()">
+      style="font-size:28px; padding:20px 50px;"
+      onclick="showScreen3()">
 
       CLICK HERE FOR MORE INFO
 
@@ -266,24 +291,20 @@
 
   </div>
 
-  <!-- FINAL SCREEN -->
-  <div class="definition-screen" id="finalScreen">
+  <!-- SCREEN 3 -->
+  <div class="screen hidden" id="screen3">
 
-    <div class="definition-text">
+    <div class="floating-text">
+      Larp Boy Stormy
+    </div>
 
-      <br>
+    <div class="main-text">
+      I OWN ALL YALL BITCHES
+    </div>
 
-      <h1 class="definition-title">
-        <strong>I OWN ALL YOU BITCHES</strong>
-      </h1>
-
-      <br>
-
-      <h3>
-        Means that you are superior to a group of others,
-        in control, the boss, etc.
-      </h3>
-
+    <div class="sub-text">
+      Means that you are superior to a group of others,
+      in control, the boss, etc.
     </div>
 
   </div>
@@ -296,23 +317,24 @@
 
   <script>
 
-    /* SCREEN SWITCHING */
+    /* SCREEN CHANGES */
 
-    function showDefinition() {
+    function showScreen2() {
 
-      document.getElementById("startScreen").style.display = "none";
+      document.getElementById("screen1")
+        .classList.add("hidden");
 
-      document.getElementById("definitionScreen")
-        .classList.add("show");
+      document.getElementById("screen2")
+        .classList.remove("hidden");
     }
 
-    function showMoreInfo() {
+    function showScreen3() {
 
-      document.getElementById("definitionScreen")
-        .style.display = "none";
+      document.getElementById("screen2")
+        .classList.add("hidden");
 
-      document.getElementById("finalScreen")
-        .classList.add("show");
+      document.getElementById("screen3")
+        .classList.remove("hidden");
     }
 
     /* AUDIO */
