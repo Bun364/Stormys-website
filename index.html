@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>FREE ROBUX</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Stormy Gallery</title>
 
   <style>
     * {
@@ -13,17 +13,15 @@
       font-family: Arial, sans-serif;
     }
 
-body {
- background: black;
-  overflow: hidden;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: white;
+    body {
+      background: black;
+      overflow: hidden;
+      height: 100vh;
+      color: white;
     }
 
-    /* Animated background */
+    /* KEEPING YOUR BACKGROUND */
+
     body::before {
       content: "";
       position: absolute;
@@ -39,30 +37,160 @@ body {
       z-index: -1;
     }
 
-    .container {
-      text-align: center;
-      transition: opacity 1.5s ease;
+    #bgVideo {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      min-width: 100%;
+      min-height: 100%;
+      transform: translate(-50%, -50%);
+      object-fit: cover;
+      z-index: -2;
     }
 
-    .robux-button {
+    /* INTRO SCREEN */
+
+    .intro {
+      position: absolute;
+      width: 100%;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      z-index: 5;
+      transition: 1.5s ease;
+      backdrop-filter: blur(2px);
+    }
+
+    .intro.hide {
+      opacity: 0;
+      transform: scale(1.1);
+      pointer-events: none;
+    }
+
+    .welcome {
+      font-size: 7rem;
+      letter-spacing: 15px;
+      margin-bottom: 20px;
+      text-shadow: 0 0 25px white;
+      animation: fadeIn 2s ease;
+    }
+
+    .subtext {
+      color: #ccc;
+      margin-bottom: 40px;
+      letter-spacing: 4px;
+      font-size: 1.1rem;
+      animation: fadeIn 3s ease;
+    }
+
+    .main-button {
       background: white;
       color: black;
       border: none;
-      padding: 35px 70px;
-      font-size: 42px;
+      padding: 25px 60px;
+      font-size: 28px;
       font-weight: bold;
-      border-radius: 20px;
+      border-radius: 18px;
       cursor: pointer;
       box-shadow: 0 0 30px white;
-      transition: 0.3s ease;
+      transition: 0.35s ease;
       animation: pulse 2s infinite;
     }
 
-    .robux-button:hover {
+    .main-button:hover {
       transform: scale(1.08);
       background: black;
       color: white;
       border: 2px solid white;
+    }
+
+    /* GALLERY */
+
+    .gallery {
+      width: 100%;
+      height: 100vh;
+      position: absolute;
+      opacity: 0;
+      transition: opacity 2s ease;
+    }
+
+    .gallery.show {
+      opacity: 1;
+    }
+
+    .slide {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transform: scale(1.1);
+      transition: opacity 1.5s ease, transform 6s ease;
+      filter: grayscale(100%);
+    }
+
+    .slide.active {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    /* DARK OVERLAY */
+
+    .overlay {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        to top,
+        rgba(0,0,0,0.85),
+        rgba(0,0,0,0.2)
+      );
+      z-index: 2;
+    }
+
+    /* COOL LITTLE TWIST */
+
+    .floating-text {
+      position: absolute;
+      bottom: 40px;
+      left: 40px;
+      z-index: 3;
+      font-size: 2rem;
+      letter-spacing: 5px;
+      text-shadow: 0 0 15px white;
+      animation: glow 3s infinite alternate;
+    }
+
+    /* PARTICLES */
+
+    .particle {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: white;
+      border-radius: 50%;
+      opacity: 0.5;
+      animation: float linear infinite;
+    }
+
+    @keyframes float {
+      from {
+        transform: translateY(100vh);
+      }
+      to {
+        transform: translateY(-100vh);
+      }
+    }
+
+    @keyframes glow {
+      from {
+        text-shadow: 0 0 5px white;
+      }
+      to {
+        text-shadow: 0 0 20px white;
+      }
     }
 
     @keyframes pulse {
@@ -77,109 +205,121 @@ body {
       }
     }
 
-    .definition-screen {
-      opacity: 0;
-      position: absolute;
-      text-align: center;
-      width: 80%;
-      transition: opacity 2s ease;
-      pointer-events: none;
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(25px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
-    .definition-screen.show {
-      opacity: 1;
-      pointer-events: auto;
-    }
-
-    .definition-screen.show {
-      opacity: 1;
-    }
-
-    .definition-title {
-      font-size: 70px;
-      margin-bottom: 20px;
-      text-shadow: 0 0 20px white;
-      letter-spacing: 4px;
-    }
-
-    .definition-text {
-      font-size: 30px;
-      color: 000000;
-      max-width: 900px;
-      margin: auto;
-      line-height: 1.5;
-    }  
-#bgVideo {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  min-width: 100%;
-  min-height: 100%;
-  transform: translate(-50%, -50%);
-  object-fit: cover;
-  z-index: -1;
-}
-}
   </style>
 </head>
+
 <body>
-  
-<video autoplay muted loop id="bgVideo">
-  <source src="background.mp4" type="video/mp4">
-</video>
-  
-  <!-- START SCREEN -->
-  <div class="container" id="startScreen">
-    <button class="robux-button" onclick="showDefinition()">
-      CLICK HERE FOR FREE ROBUX
-    </button>
-  </div>
 
-  <!-- SECOND SCREEN -->
-  <div class="definition-screen" id="definitionScreen">
+  <!-- KEEPING YOUR VIDEO -->
+  <video autoplay muted loop id="bgVideo">
+    <source src="background.mp4" type="video/mp4">
+  </video>
 
-    <div class="definition-text" style="font-size: 55px; margin-bottom: 40px; text-shadow: 0 0 20px black;">
-      THANKS FOR YOUR IP LOSER XDDD
+  <!-- INTRO -->
+  <div class="intro" id="introScreen">
+
+    <div class="welcome">WELCOME</div>
+
+    <div class="subtext">
+      click below for stormys pictures
     </div>
 
-    <button class="robux-button" style="font-size: 28px; padding: 20px 50px;" onclick="showMoreInfo()">
-      CLICK HERE FOR MORE INFO
+    <button class="main-button" onclick="startGallery()">
+      CLICK HERE
     </button>
+
   </div>
 
-  <!-- FINAL SCREEN -->
-  <div class="definition-screen" id="finalScreen">
+  <!-- GALLERY -->
+  <div class="gallery" id="gallery">
 
-    <!-- PUT YOUR OWN DEFINITION BELOW -->
-    <div class="definition-text">
-     <br><h1><strong>I OWN ALL YOU BITCHES</strong><h1><br>
-    <h3>Means that you are superior to a group of others, in control, the boss, etc.<h3>
+    <div class="overlay"></div>
+
+    <div class="floating-text">
+      STORMY
     </div>
 
+    <!-- REPLACE THESE WITH YOUR OWN IMAGES -->
+
+    <img class="slide active" src="image1.jpg">
+    <img class="slide" src="image2.jpg">
+    <img class="slide" src="image3.jpg">
+    <img class="slide" src="image4.jpg">
+    <img class="slide" src="image5.jpg">
+
   </div>
+
+  <!-- KEEPING YOUR AUDIO -->
+  <audio id="bgMusic" autoplay loop style="display:none;">
+    <source src="music.mp3" type="audio/mpeg">
+  </audio>
 
   <script>
-    function showDefinition() {
-      document.getElementById("startScreen").style.display = "none";
-      document.getElementById("definitionScreen").classList.add("show");
+
+    /* AUDIO */
+
+    document.addEventListener("click", () => {
+      document.getElementById("bgMusic").play();
+    }, { once: true });
+
+    /* SLIDESHOW */
+
+    const intro = document.getElementById("introScreen");
+    const gallery = document.getElementById("gallery");
+    const slides = document.querySelectorAll(".slide");
+
+    let current = 0;
+
+    function startGallery() {
+
+      intro.classList.add("hide");
+
+      setTimeout(() => {
+        gallery.classList.add("show");
+      }, 800);
+
+      setInterval(nextSlide, 4500);
     }
 
-    function showMoreInfo() {
-      document.getElementById("definitionScreen").style.display = "none";
-      document.getElementById("finalScreen").classList.add("show");
+    function nextSlide() {
+
+      slides[current].classList.remove("active");
+
+      current = (current + 1) % slides.length;
+
+      slides[current].classList.add("active");
     }
+
+    /* PARTICLES */
+
+    for (let i = 0; i < 80; i++) {
+
+      let particle = document.createElement("div");
+
+      particle.classList.add("particle");
+
+      particle.style.left = Math.random() * 100 + "vw";
+
+      particle.style.animationDuration =
+        (5 + Math.random() * 10) + "s";
+
+      particle.style.opacity = Math.random();
+
+      document.body.appendChild(particle);
+    }
+
   </script>
-      
-<audio id="bgMusic" autoplay loop style="display:none;">
-  <source src="music.mp3" type="audio/mpeg">
-</audio>
 
-<script>
-document.addEventListener("click", () => {
-  document.getElementById("bgMusic").play();
-}, { once: true });
-</script>
-      
 </body>
 </html>
-
