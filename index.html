@@ -155,14 +155,16 @@
     }
   </script>
       
-<audio loop id="bgMusic">
+<audio id="bgMusic" loop>
   <source src="music.mp3" type="audio/mpeg">
 </audio>
 
 <script>
-document.addEventListener("click", function () {
-  document.getElementById("bgMusic").play();
-}, { once: true });
+window.onload = function() {
+  document.body.addEventListener('click', function() {
+    document.getElementById('bgMusic').play();
+  }, { once: true });
+};
 </script>
       
 </body>
