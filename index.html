@@ -20,8 +20,6 @@
       color: white;
     }
 
-    /* VIDEO BACKGROUND */
-
     #bgVideo {
       position: fixed;
       top: 50%;
@@ -32,8 +30,6 @@
       object-fit: cover;
       z-index: -3;
     }
-
-    /* GRID EFFECT */
 
     body::before {
       content: "";
@@ -58,8 +54,6 @@
       z-index: -2;
     }
 
-    /* DARK FADE OVERLAY */
-
     body::after {
       content: "";
       position: absolute;
@@ -73,8 +67,6 @@
       z-index: -1;
     }
 
-    /* SCREEN SETUP */
-
     .screen {
       position: absolute;
       width: 100%;
@@ -84,15 +76,11 @@
       align-items: center;
       flex-direction: column;
       text-align: center;
-      transition: opacity 1.5s ease;
-      animation: fadeIn 1.5s ease;
     }
 
     .hidden {
       display: none;
     }
-
-    /* MAIN BUTTON */
 
     .robux-button {
       background: white;
@@ -103,87 +91,26 @@
       font-weight: bold;
       border-radius: 20px;
       cursor: pointer;
-      letter-spacing: 2px;
-      position: relative;
-      overflow: hidden;
-
-      box-shadow:
-        0 0 15px white,
-        0 0 35px rgba(255,255,255,0.7),
-        0 0 70px rgba(255,255,255,0.3);
-
-      animation: pulse 2s infinite;
-      transition: 0.35s ease;
     }
-
-    .robux-button:hover {
-      transform: scale(1.08);
-      background: black;
-      color: white;
-      border: 2px solid white;
-
-      box-shadow:
-        0 0 25px white,
-        0 0 70px white;
-    }
-
-    /* SHINE EFFECT */
-
-    .robux-button::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: -120%;
-      width: 60%;
-      height: 100%;
-      background: rgba(255,255,255,0.4);
-      transform: skewX(-20deg);
-      transition: 0.7s;
-    }
-
-    .robux-button:hover::before {
-      left: 140%;
-    }
-
-    /* TEXT */
 
     .main-text {
       font-size: 70px;
       margin-bottom: 35px;
-
-      text-shadow:
-        0 0 10px white,
-        0 0 25px white;
+      text-shadow: 0 0 10px white;
     }
 
     .sub-text {
       font-size: 30px;
       max-width: 900px;
       line-height: 1.5;
-
-      text-shadow:
-        0 0 10px black,
-        0 0 20px black;
     }
-
-    /* BOTTOM LEFT TEXT */
 
     .floating-text {
       position: absolute;
       bottom: 35px;
       left: 35px;
       font-size: 2rem;
-      letter-spacing: 5px;
-      z-index: 5;
-
-      text-shadow:
-        0 0 10px white,
-        0 0 20px white;
-
-      animation: glow 3s infinite alternate;
     }
-
-    /* PARTICLES */
 
     .particle {
       position: absolute;
@@ -193,80 +120,28 @@
       border-radius: 50%;
       opacity: 0.4;
       animation: float linear infinite;
-      z-index: 0;
-    }
-
-    /* ANIMATIONS */
-
-    @keyframes pulse {
-
-      0% {
-        box-shadow:
-          0 0 10px white,
-          0 0 25px rgba(255,255,255,0.5);
-      }
-
-      50% {
-        box-shadow:
-          0 0 30px white,
-          0 0 70px rgba(255,255,255,0.8);
-      }
-
-      100% {
-        box-shadow:
-          0 0 10px white,
-          0 0 25px rgba(255,255,255,0.5);
-      }
-    }
-
-    @keyframes glow {
-      from {
-        text-shadow:
-          0 0 5px white,
-          0 0 15px white;
-      }
-
-      to {
-        text-shadow:
-          0 0 20px white,
-          0 0 40px white;
-      }
     }
 
     @keyframes float {
-      from {
-        transform: translateY(100vh);
-      }
-
-      to {
-        transform: translateY(-100vh);
-      }
+      from { transform: translateY(100vh); }
+      to { transform: translateY(-100vh); }
     }
-
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
   </style>
 </head>
 
 <body>
 
-  <!-- VIDEO -->
   <video autoplay muted loop id="bgVideo">
     <source src="background.mp4" type="video/mp4">
   </video>
 
   <!-- SCREEN 1 -->
   <div class="screen" id="screen1">
+
+    <!-- VISITOR COUNTER (ADDED HERE) -->
+    <p style="margin-bottom:20px; font-size:20px; text-shadow:0 0 10px white;">
+      Visitors: <span id="visits">0</span>
+    </p>
 
     <button class="robux-button" onclick="showScreen2()">
       CLICK HERE FOR FREE ROBUX
@@ -281,12 +156,9 @@
       GOT YOUR IP LOSER XDDD
     </div>
 
-    <button class="robux-button"
-      style="font-size:28px; padding:20px 50px;"
-      onclick="showScreen3()">
-
+    <button class="robux-button" onclick="showScreen3()"
+      style="font-size:28px; padding:20px 50px;">
       CLICK HERE FOR MORE INFO
-
     </button>
 
   </div>
@@ -303,65 +175,44 @@
     </div>
 
     <div class="sub-text">
-      Means I am better than everyone, and all of you are my bitches. I own everyone I’m so harmful, boi!!
+      Means I am better than everyone, and all of you are my bitches.
     </div>
 
   </div>
-
-  <!-- AUDIO -->
 
   <audio id="bgMusic" autoplay loop style="display:none;">
     <source src="music.mp3" type="audio/mpeg">
   </audio>
 
   <script>
-
-    /* SCREEN CHANGES */
-
     function showScreen2() {
-
-      document.getElementById("screen1")
-        .classList.add("hidden");
-
-      document.getElementById("screen2")
-        .classList.remove("hidden");
+      document.getElementById("screen1").classList.add("hidden");
+      document.getElementById("screen2").classList.remove("hidden");
     }
 
     function showScreen3() {
-
-      document.getElementById("screen2")
-        .classList.add("hidden");
-
-      document.getElementById("screen3")
-        .classList.remove("hidden");
+      document.getElementById("screen2").classList.add("hidden");
+      document.getElementById("screen3").classList.remove("hidden");
     }
 
-    /* AUDIO */
-
     document.addEventListener("click", () => {
-
       document.getElementById("bgMusic").play();
-
     }, { once: true });
 
-    /* PARTICLES */
-
     for (let i = 0; i < 90; i++) {
-
       let particle = document.createElement("div");
-
       particle.classList.add("particle");
-
       particle.style.left = Math.random() * 100 + "vw";
-
-      particle.style.animationDuration =
-        (5 + Math.random() * 10) + "s";
-
-      particle.style.opacity = Math.random();
-
+      particle.style.animationDuration = (5 + Math.random() * 10) + "s";
       document.body.appendChild(particle);
     }
 
+    /* VISITOR COUNTER SCRIPT (ADDED HERE) */
+    fetch("https://api.countapi.xyz/hit/my-github-site-123/visits")
+      .then(res => res.json())
+      .then(data => {
+        document.getElementById("visits").innerText = data.value;
+      });
   </script>
 
 </body>
